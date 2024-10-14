@@ -9,20 +9,31 @@ void setup() {
 
 void loop() {
   motorForward();  // 모터를 정방향으로 회전
-  delay(5000);     // 5초간 회전
+  delay(2000);     // 2초간 정지 후 역방향 회전
 
   motorBackward(); // 모터를 역방향으로 회전
-  delay(5000);     // 5초간 회전
+  delay(2000);     // 2초간 정지 후 정방향 회전
 }
 
 // 모터를 정방향으로 회전시키는 함수
 void motorForward() {
   analogWrite(IN1, speedValue);  // PWM 신호로 속도 제어
   digitalWrite(IN2, LOW);        // 정방향 회전
+  delay(5000);     // 5초간 회전
+  motorStop();     // 5초 후 모터 정지
 }
 
 // 모터를 역방향으로 회전시키는 함수
 void motorBackward() {
   analogWrite(IN1, speedValue);  // PWM 신호로 속도 제어
   digitalWrite(IN2, HIGH);       // 역방향 회전
+  delay(5000);     // 5초간 회전
+  motorStop();     // 5초 후 모터 정지
+}
+
+
+// 모터를 정지시키는 함수
+void motorStop() {
+  digitalWrite(IN1, LOW);        // 모터 정지
+  digitalWrite(IN2, LOW);        // 모터 정지
 }
